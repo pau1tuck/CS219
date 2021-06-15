@@ -1,5 +1,6 @@
 #![allow(unused_variables)]
 #![allow(unused_mut)]
+
 fn main() {
     /* SCALAR TYPES */
     // Declare an implicit integer with a value of 42
