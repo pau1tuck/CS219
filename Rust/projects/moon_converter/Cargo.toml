@@ -1,0 +1,7 @@
+[package]
+name = "moon_converter"
+version = "1.0.0"
+authors = ["Paul Tuck @paultuck"]
+edition = "2018"
+
+[dependencies]
