@@ -1,16 +1,20 @@
 fn main() {
 
     // String literals
-    let mut string1 = String::new();
-    let string2 = String::from("Hello");
-    let string3 = "World".to_string();
-    println!("{}, {}!", string2, string3);
+    let greeting = String::from("Hello");
+    let person = "Ferris".to_string();
+    println!("{}, {}!", greeting, person);
 
-    string1.push_str("Rust");
-    string1.push('🦀');
-    println!("{}, {}!", string2, string1);
+    
+    let mut my_string = String::new();
+    my_string.push_str(&greeting);
+    my_string.push_str(", ");
+    my_string.push('🦀');
+    my_string.push('!');
 
-    let str2 = string1.trim(); // owned String type
+    println!("{}", my_string);
 
-    let str3 = &str2; // borrow operator
+    let owned = my_string.trim(); // owned String type
+
+    let borrowed = &owned; // borrowed &str type
 }
