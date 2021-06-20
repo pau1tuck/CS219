@@ -36,7 +36,7 @@ mod tests {
 
     #[test]
     fn str_p1() {
-        let p1 = "80,443,50,65,56 ,565".to_string();
+        let p1 = "80,443,50,65,56,565".to_string();
         let b: Vec<&str> = p1.split(",").collect();
         for i in &b {
             // *i = "sadsad";
