@@ -1,5 +1,6 @@
 use std::env;
 use std::fs;
+use std::process;
 
 fn main() {
 
@@ -8,7 +9,11 @@ fn main() {
     // Iterators produce a series of values, and we can call the collect method on an iterator to turn it into a collection, such as a vector, containing all the elements the iterator produces.
     
     
-    let config = parse_config(&args); // Destructures the variables returned by parse_config.
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("Error parsing arguments: {}", err);
+        process::exit(1);
+    }); // Destructures the variables returned by parse_config.
+    
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
 
@@ -19,14 +24,20 @@ fn main() {
     println!("With text:\n{}", contents);
 }
 
+// A struct to name the related purpose of query and filename and to be able to return the values’ names as struct field names from the Config::new().
 struct Config {
     query: String,
     filename: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone(); // The program’s name takes up the first value in the vector at args[0], so we start at [1].
-    let filename = args[2].clone();
+impl Config {
+    fn new(args: &[String]) -> Result<Config, &str> {
+        if args.len() < 3 {
+            return Err("Not enough arguments.");
+        }
+        let query = args[1].clone(); // The program’s name takes up the first value in the vector at args[0], so we start at [1].
+        let filename = args[2].clone();
 
-    Config { query, filename }
+        Ok(Config { query, filename })
+    }
 }
