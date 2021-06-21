@@ -1,6 +1,7 @@
 use std::env;
-use std::fs;
 use std::process;
+
+use minigrep::Config;
 
 fn main() {
 
@@ -15,29 +16,11 @@ fn main() {
     }); // Destructures the variables returned by parse_config.
     
     println!("Searching for {}", config.query);
-    println!("In file {}", config.filename);
+    println!("in file {}", config.filename);
 
-    // fs::read_to_string takes the filename, opens that file, and returns a Result<String> of the file’s contents:
-    let contents = fs::read_to_string(config.filename)
-        .expect("Error reading the file.");
-
-    println!("With text:\n{}", contents);
-}
-
-// A struct to name the related purpose of query and filename and to be able to return the values’ names as struct field names from the Config::new().
-struct Config {
-    query: String,
-    filename: String,
-}
-
-impl Config {
-    fn new(args: &[String]) -> Result<Config, &str> {
-        if args.len() < 3 {
-            return Err("Not enough arguments.");
-        }
-        let query = args[1].clone(); // The program’s name takes up the first value in the vector at args[0], so we start at [1].
-        let filename = args[2].clone();
-
-        Ok(Config { query, filename })
+    if let Err(e) = minigrep::run(config) {
+        println!("Application error: {}", e);
+        process::exit(1);
     }
+    // We use if let rather than unwrap_or_else to check whether run returns an Err value and call process::exit(1) if it does. The run function doesn’t return a value that we want to unwrap in the same way that Config::new returns the Config instance. Because run returns () in the success case, we only care about detecting an error, so we don’t need unwrap_or_else to return the unwrapped value because it would only be ().
 }
