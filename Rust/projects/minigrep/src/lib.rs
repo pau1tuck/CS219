@@ -5,6 +5,7 @@ use std::fs;
 pub struct Config {
     pub query: String,
     pub filename: String,
+    pub case_sensitive: bool,
 }
 
 impl Config {
@@ -25,6 +26,12 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
     // fs::read_to_string takes the filename, opens that file, and returns a Result<String> of the file’s contents:
     let contents = fs::read_to_string(config.filename)?;
     // Rather than panic! on an error, ? will return the error value from the current function for the caller to handle.
+
+    let results = if config.case_sensitive {
+        search(&config.query, &contents)
+    } else {
+        search_case_insensitive(&config.query, &contents)
+    };
 
 	for line in search(&config.query, &contents) {
 		println!("{}", line);
