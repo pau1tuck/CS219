@@ -1,5 +1,6 @@
 use std::error::Error;
 use std::fs;
+use std::env;
 
 // A struct to name the related purpose of query and filename and to be able to return the values’ names as struct field names from the Config::new():
 pub struct Config {
@@ -16,7 +17,10 @@ impl Config {
         let query = args[1].clone(); // The program’s name takes up the first value in the vector at args[0], so we start at [1].
         let filename = args[2].clone();
 
-        Ok(Config { query, filename })
+        let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
+        // We’re using the is_err() method on the Result to check whether it’s an error and therefore unset, which means it should do a case-sensitive search. If the CASE_INSENSITIVE environment variable is set to anything, is_err will return false and the program will perform a case-insensitive search. We don’t care about the value of the environment variable, just whether it’s set or unset, so we’re checking is_err rather than using unwrap, expect, or any of the other methods we’ve seen on Result.
+
+        Ok(Config { query, filename, case_sensitive })
     }
 }
 
@@ -33,7 +37,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
         search_case_insensitive(&config.query, &contents)
     };
 
-	for line in search(&config.query, &contents) {
+	for line in results {
 		println!("{}", line);
 	}
 
