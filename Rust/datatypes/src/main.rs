@@ -33,7 +33,7 @@ fn main() {
 
     // Destructure tuple1 into new variables 'x', 'y', and 'z'
     let (x, y, z) = tuple1;
-    
+
     // Declare an implicit mutable 2-dimensional tuple variable 'tuple2' containing tuple1 and unsigned_integer
     let mut tuple2 = (tuple1, 255); // ((42, 3.14, '🦀'), 255)
     println!("The answer to the ultimate question of life, the universe, and everything is {}.", (tuple2.0).0);
@@ -45,14 +45,14 @@ fn main() {
     println!("The binary equivalent of hex 2A is {:b}.", (tuple2.0).0);
 
     // Declare the following variable 'days'
-    let days = ["Monday", "Tuesday", "Wednesday", "hursday", "Friday", "Saturday", "Sunday"];
+    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
     println!("I was born on a {}.", days[5]);
 
     let array1: [i32; 3] = [255, 42, 13];
     println!("The first value in array1 is {}.", array1[0]);
 
-     
+
     let str1 = " Hello, World! "; // &str type
 
     let str2 = str1.trim(); // owned String type
@@ -64,4 +64,4 @@ fn main() {
 
     let str4 = i.to_string(); // String type (new memory allocation)
 */
-} 
+}
