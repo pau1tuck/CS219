@@ -10,6 +10,7 @@ try:
 except ZeroDivisionError:
 	print("Cannot divide by zero.")
 
-
+x, y = 1, 2 # Multiple variable assignment
+x, y = y, x # (Pythonic swap)
 
 
