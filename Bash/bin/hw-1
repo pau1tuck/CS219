@@ -1,3 +1,4 @@
 echo Hello, World!
-# chmod +x bin/hw
-# bash bin/hw
+
+# 1. chmod +x bin/hw
+# 2. bash bin/hw
