@@ -1,4 +1,6 @@
 echo Hello, World!
+pwd
+type -a test
 
 # 1. chmod +x bin/hw
 # 2. bash bin/hw
