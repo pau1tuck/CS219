@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#: Title : hw
+#: Date : 2021-12-30
+#: Author : "Paul D.R. Tuck" <paul.tuck@xjtlu.edu.cn>
+#: Version : 1.0
+#: Description : print Hello, World!
+#: Options : None
+
+printf "%s\n" "Hello, World!"

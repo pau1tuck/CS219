@@ -1,6 +1,6 @@
 #!/bin/bash
 
-datetime=$(date "+%Y-%m-%d_%H:%M%Z")
+datetime=$(date "+%Y-%m-%d_%H:%M_%Z")
 
 echo $datetime
 

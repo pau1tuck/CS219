@@ -1,0 +1,3 @@
+echo Hello, World!
+# chmod +x bin/hw
+# bash bin/hw
